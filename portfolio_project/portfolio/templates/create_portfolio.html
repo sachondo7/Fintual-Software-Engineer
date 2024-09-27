@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea tu Portafolio | Fintual Challenge</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+</head>
+<body>
+    <!-- Encabezado personalizado -->
+    <header class="header">
+        <div class="branding">
+            <!-- Si el logo no aparece, asegúrate de que el archivo está en la ubicación correcta -->
+            <img src="{% static 'portfolio/logo_fintual.png' %}" alt="Logo de Fintual" class="logo">
+            <h1>Aplicación de Portafolio de Acciones</h1>
+            <p><em>Desarrollada por Sebastián Achondo para postulación de Fintual</em></p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <h2>Crea tu Portafolio</h2>
+        <p>Esta aplicación utiliza las APIs de <code>yfinance</code> para obtener los precios reales de las acciones en las fechas seleccionadas. 
+           Ten en cuenta que los valores reales no están disponibles para fechas futuras.</p>
+
+        <p><strong>Instrucciones:</strong> Elige las acciones que quieres incluir en tu portafolio, selecciona las fechas de inicio y fin, 
+           y asigna un porcentaje a cada una para crear tu portafolio personalizado.</p>
+
+        <!-- Mostrar mensajes de error -->
+        {% if messages %}
+            <div class="error-messages">
+                {% for message in messages %}
+                    <p class="error-text">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Formulario para crear el portafolio -->
+        <form method="POST" id="portfolio-form">
+            {% csrf_token %}
+        
+            <!-- Ingresar fechas de inicio y fin con validación de fechas futuras -->
+            <div class="form-group">
+                <label for="start_date">Fecha de inicio:</label>
+                <input type="date" name="start_date" id="start_date" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="end_date">Fecha de fin:</label>
+                <input type="date" name="end_date" id="end_date" required>
+            </div>
+        
+            <!-- Mostrar todas las acciones disponibles y sus precios -->
+            <h3>Acciones Disponibles:</h3>
+            <div class="stock-group">
+                {% for stock in stocks %}
+                    <div class="stock-row">
+                        <input type="checkbox" id="stock_{{ stock.id }}" name="stocks[]" value="{{ stock.id }}" onclick="togglePercentage({{ stock.id }})">
+                        <label for="stock_{{ stock.id }}">{{ stock.name }}</label>
+        
+                        <!-- Campo de porcentaje -->
+                        <input type="number" name="percentages[]" id="percentage_{{ stock.id }}" placeholder="Porcentaje" min="0" max="100" step="1" disabled required>
+                    </div>
+                {% endfor %}
+            </div>
+        
+            <!-- Botón para crear el portafolio -->
+            <button type="submit" class="btn-create">Crear Portafolio</button>
+        </form>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>&copy; 2024 Sebastián Achondo.</p>
+    </footer>
+
+    <!-- Enlazar el archivo de JavaScript -->
+    <script src="{% static 'portfolio/scripts.js' %}"></script>
+
+    <!-- Script para limitar la selección de fechas a hoy o antes -->
+    <script>
+        // Función para deshabilitar fechas futuras
+        function setMaxDate() {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('start_date').setAttribute('max', today);
+            document.getElementById('end_date').setAttribute('max', today);
+        }
+
+        // Llamar a la función al cargar la página
+        window.onload = function() {
+            setMaxDate();
+        };
+    </script>
+</body>
+</html>

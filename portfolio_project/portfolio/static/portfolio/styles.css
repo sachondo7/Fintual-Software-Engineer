@@ -1,0 +1,236 @@
+/* Estilos generales */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/* Estilo del encabezado */
+.header {
+    background-color: #007BFF;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.header .branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header .logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Estilo del contenedor principal */
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    margin: 30px auto;
+}
+
+/* Agrupar etiquetas e inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="date"],
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+
+/* Estilos para los botones */
+.btn-create {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.btn-create:hover {
+    background-color: #218838;
+}
+
+/* Agrupación de las acciones */
+/* Agrupación de las acciones */
+.stock-group {
+    margin-top: 15px;
+}
+
+.stock-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9; /* Fondo ligero para distinguir las filas */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.stock-row:hover {
+    background-color: #f1f1f1; /* Efecto hover */
+}
+
+.stock-row input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.stock-row label {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.stock-row input[type="number"] {
+    width: 400px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+/* Estilo del pie de página */
+.footer {
+    background-color: #007BFF;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+
+
+/* Estilo para el resumen del portafolio */
+/* Estilo unificado para el resumen del portafolio */
+.summary-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px; /* Mantén el ancho que prefieras */
+    margin: 20px auto;
+    background-color: #fafafa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Estilo para alinear las checkboxes, nombres y porcentajes en una fila */
+.stock-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stock-row input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.stock-row label {
+    margin-right: 20px;
+    width: 250px; /* Ajusta este ancho según sea necesario */
+}
+
+.stock-row input[type="number"] {
+    padding: 5px;
+    width: 80px;
+}
+
+/* Estilo de la tabla de portafolio */
+/* Estilo de la tabla de portafolio */
+.portfolio-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.portfolio-table thead tr {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #333;
+}
+
+.portfolio-table th, .portfolio-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center; /* Asegura alineación de texto a la izquierda */
+}
+
+.portfolio-table th {
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.portfolio-table td:last-child {
+    text-align: right; /* Alinear el porcentaje a la derecha */
+}
+
+.portfolio-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo general para el contenedor de mensajes de error */
+.error-messages {
+    background-color: #f8d7da; /* Fondo rojo claro */
+    border-left: 5px solid #dc3545; /* Borde izquierdo rojo */
+    color: #721c24; /* Texto en rojo oscuro */
+    padding: 15px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    max-width: 700px;
+    margin: 0 auto; /* Centrar */
+}
+
+/* Estilo para cada mensaje de error individual */
+.error-text {
+    font-size: 16px;
+    margin: 5px 0;
+}
+

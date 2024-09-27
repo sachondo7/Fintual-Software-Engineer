@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen del Portafolio</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+</head>
+<body>
+    <div class="summary-container">
+        <h1>Resumen del Portafolio</h1>
+
+        <p>Fecha de inicio: {{ portfolio.start_date }}</p>
+        <p>Fecha de fin: {{ portfolio.end_date }}</p>
+
+        <h3>Rentabilidad del Portafolio</h3>
+        <p>Ganancia total: ${{ profit }}</p>
+        <p>Retorno anualizado: {{ annualized_return }}%</p>
+
+        <!-- Tabla con la composición del portafolio -->
+        <h3>Composición del Portafolio</h3>
+        <table class="portfolio-table">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Símbolo</th>
+                    <th>Porcentaje</th>
+                    <th>Precio Inicial</th>
+                    <th>Precio Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in portfolio_composition %}
+                <tr>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.percentage }}%</td>
+                    <td>${{ stock.start_price }}</td>  <!-- Precio inicial -->
+                    <td>${{ stock.end_price }}</td>    <!-- Precio final -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Mostrar alerta si algunas acciones no pudieron ser encontradas -->
+        {% if missing_prices %}
+        <div class="alert alert-warning" role="alert">
+            <h4>Atención</h4>
+            <p>Las siguientes acciones no pudieron ser encontradas en la API de yfinance, por lo que se han inventado precios para ellas:</p>
+            <ul>
+                {% for stock in missing_prices %}
+                    <li>{{ stock }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
